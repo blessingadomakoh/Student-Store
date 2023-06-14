@@ -1,0 +1,23 @@
+/* ProductCard.css */
+
+.product-card {
+    background-color: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .media img {
+    max-width: 100%;
+  }
+  
+  .product-name, .product-price, .product-description, .product-quantity {
+    margin: 8px 0;
+  }
+  
+  .add, .remove {
+    margin: 4px;
+    padding: 8px 16px;
+  }
+  

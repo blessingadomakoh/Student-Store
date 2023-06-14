@@ -1,0 +1,28 @@
+.hero {
+    background: rgb(61, 175, 213);
+    color: white;
+    padding: 20px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 60%;
+    margin-left: 20%;
+  }
+  
+  .intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero p {
+    font-size: 22px;
+  }
+  
+  .hero-img {
+    width: 100px;
+    height: 100px;
+
+  }
+  
