@@ -1,0 +1,18 @@
+.category-filter {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+  .category-filter button {
+    margin: 0 5px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .category-filter button.selected {
+    background-color: #eee;
+  }
+  

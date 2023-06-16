@@ -1,26 +1,21 @@
 import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 
-const ProductView = ({
-  product,
-  productId,
-  quantity,
-  handleAddItemToCart,
-  handleRemoveItemFromCart
-}) => {
+const ProductView = ({ product, productId, handleAddItemToCart, handleRemoveItemFromCart }) => {
+
   return (
     <div className="product-view">
-      <h1 className="product-id">Product #{productId}</h1>
       <ProductCard
         product={product}
         productId={productId}
-        quantity={quantity}
+        showDescription={true}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemFromCart={handleRemoveItemFromCart}
-        showDescription={true}
       />
     </div>
   );
 };
 
 export default ProductView;
+
+

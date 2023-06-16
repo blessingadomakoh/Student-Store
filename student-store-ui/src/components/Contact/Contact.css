@@ -1,0 +1,28 @@
+
+.contact {
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.info {
+    margin: 10px 0;
+}
+
+.social_icon {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* This line centers the items horizontally within the flex container */
+}
+
+
+.icon {
+    margin: 0 10px;
+    width: 36px;
+    height: 36px;
+    margin-top: 20px;
+}
