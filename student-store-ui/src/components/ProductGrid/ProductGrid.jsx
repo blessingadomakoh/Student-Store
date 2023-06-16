@@ -17,11 +17,13 @@ const ProductGrid = ({ products, handleAddItemToCart, handleRemoveItemFromCart, 
         const quantity = cartItem ? cartItem.quantity : 0;
 
         return (
+          // for each product, ProductCard is rendered 
           <ProductCard
+          // props passed to ProductCard component 
             key={product.id}
             product={product}
             productId={product.id}
-            quantity={quantity}
+            quantity={quantity} // quantity prop is canculated by finding the corresponding item in the shopping cart array using it's product id; if item exists, quantity is used, else, quantity set to 0
             handleAddItemToCart={handleAddItemToCart}
             handleRemoveItemFromCart={handleRemoveItemFromCart}
             showDescription={false}

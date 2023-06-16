@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../Sidebar/Sidebar'; // not used in ui/this project
 import ProductDetail from '../ProductDetail/ProductDetail';
 import NotFound from '../NotFound/NotFound';
 import About from '../About/About';
