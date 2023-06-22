@@ -1,0 +1,33 @@
+.shopping-cart {
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-product-name, .cart-product-quantity {
+    font-size: 14px;
+  }
+  
+  .subtotal, .tax, .total-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .notification {
+    padding: 20px;
+    text-align: center;
+    color: azure;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  

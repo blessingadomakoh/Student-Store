@@ -1,11 +1,44 @@
-// not used in ui
-import "./Sidebar.css"
-import React from "react"
+import React, { useState } from 'react';
+import './Sidebar.css';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import CheckoutForm from '../CheckoutForm/CheckoutForm';
 
-export default function Sidebar() {
+const Sidebar = ({
+  shoppingCart,
+  products,
+  checkoutForm,
+  handleOnCheckoutFormChange,
+  handleOnSubmitCheckoutForm,
+}) => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOnToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <section className="sidebar">
-      {/* <p>Sidebar</p> */}
+    <section className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <div className="toggle-button" onClick={handleOnToggle}>
+        <i className={`arrow ${isOpen ? 'left' : 'right'}`}></i>
+      </div>
+      {isOpen && (
+        <div className="content">
+          <ShoppingCart 
+            products={products}
+            shoppingCart={shoppingCart}
+          />
+          <CheckoutForm
+            isOpen={isOpen}
+            shoppingCart={shoppingCart}
+            checkoutForm={checkoutForm}
+            handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+            handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+          />
+        </div>
+      )}
     </section>
-  )
-}
+  );
+};
+
+export default Sidebar;
