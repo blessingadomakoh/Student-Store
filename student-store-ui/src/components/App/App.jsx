@@ -16,6 +16,9 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false); // to track toggling the sidebar open/closed state
   const [checkoutForm, setCheckoutForm] = useState({ name: '', email: ''})
 
+  const taxRate = 0.0875; 
+
+
 
   // the useEffect hook is used to fetch products from the API when the component mounts
   useEffect(() => {
@@ -85,14 +88,37 @@ const App = () => {
     //submit the user's order to the API
     console.log('Checkout form submitted:', checkoutForm)
 
-    //reset the form after submission
-    setCheckoutForm({
-      email: '',
-      name: '',
-    })
+    
+  // Generate receipt message
+  let receiptMessage = 'Receipt\nShowing receipt for ' + checkoutForm.name + ' available at ' + checkoutForm.email + '":\n\n';
+
+  let subtotal = 0;
+  for (const item of shoppingCart) {
+    const product = products.find((p) => p.id === item.itemId);
+    if (product) {
+      const itemTotal = product.price * item.quantity;
+      subtotal += itemTotal;
+      receiptMessage += `${item.quantity} total ${product.name} purchased at a cost of $${product.price.toFixed(2)} for a total cost of $${itemTotal.toFixed(2)}.\n`;
+    }
+  }
+
+  const taxAmount = subtotal * taxRate;
+  const total = subtotal + taxAmount;
+
+  receiptMessage += `Before taxes, the subtotal was $${subtotal.toFixed(2)}\n`;
+  receiptMessage += `After taxes and fees were applied, the total comes out to $${total.toFixed(2)}`;
+
+
+    // //reset the form after submission
+    // setCheckoutForm({
+    //   email: '',
+    //   name: '',
+    // })
 
     //empty the shopping cart after successful checkout
     setShoppingCart([])
+
+    return receiptMessage
   }
 
   // Handler for updating checkout form fields

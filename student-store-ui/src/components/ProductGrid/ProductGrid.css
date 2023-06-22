@@ -1,11 +1,14 @@
 /* ProductGrid.css */
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px; /* Adjust the gap between items as needed */
-    /* padding: 20px; */
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Adjust the gap between items as needed */
+  max-width: 1200px; /* Limit how wide the grid can grow */
+  margin: 0 auto; /* This will center the grid on the page */
+  padding: 20px; /* Space around the grid */
+}
+
   
   .product-card img {
     max-width: 100%;

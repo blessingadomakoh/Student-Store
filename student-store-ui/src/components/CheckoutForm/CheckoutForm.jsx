@@ -1,60 +1,116 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CheckoutForm.css';
 
-// Define the CheckoutForm component
 const CheckoutForm = ({
-  isOpen, // Prop to control whether the form is open or not
-//   shoppingCart, // Prop that contains the shopping cart items
-  checkoutForm = { email: '', name: '' }, // Prop for the checkout form data (default values if not provided)
-  handleOnCheckoutFormChange, // Prop function to handle changes to the form inputs
-  handleOnSubmitCheckoutForm, // Prop function to handle form submission
+  isOpen,
+  shoppingCart,
+  products,
+  checkoutForm = { email: '', name: '' },
+  handleOnCheckoutFormChange,
+  handleOnSubmitCheckoutForm,
 }) => {
-  // Handle input change and pass the updated values to the parent component
+  const taxRate = 0.0875;
+
+  // Local state to handle success and error messages
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target; // Destructure name and value from the event target (input element)
-    handleOnCheckoutFormChange(name, value); // Pass them to the parent handler
+    const { name, value } = e.target;
+    handleOnCheckoutFormChange(name, value);
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    handleOnSubmitCheckoutForm(); // Call the parent handler for form submission
+//   const calculateSubtotal = () => {
+//     let subtotal = 0;
+//     for (const item of shoppingCart) {
+//       const product = products.find((p) => p.id === item.itemId);
+//       if (product) {
+//         subtotal += product.price * item.quantity;
+//       }
+//     }
+//     return subtotal.toFixed(2);
+//   };
+
+//   const calculateTax = (subtotal) => (subtotal * taxRate).toFixed(2);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const receiptMessage = await handleOnSubmitCheckoutForm();
+
+    //   const subtotal = parseFloat(calculateSubtotal());
+    //   const tax = parseFloat(calculateTax(subtotal));
+    //   const total = subtotal + tax;
+
+    //   let receiptMessage = 'Receipt\nShowing receipt for "' + checkoutForm.name + '" available at "' + checkoutForm.email + '":\n\n';
+      
+      // Add the details of each item in the shopping cart
+    //   for (const item of shoppingCart) {
+    //     const product = products.find(p => p.id === item.itemId);
+    //     if (product) {
+    //       receiptMessage += `${item.quantity} total ${product.name} purchased at a cost of $${product.price.toFixed(2)} for a total cost of $${(product.price * item.quantity).toFixed(2)}.\n`;
+    //     }
+    //   }
+
+      // Add the subtotal, tax, and total
+    //   receiptMessage += `Before taxes, the subtotal was $${subtotal.toFixed(2)}\nAfter taxes and fees were applied, the total comes out to $${total.toFixed(2)}`;
+
+      // Display the receipt message
+      setMessage(receiptMessage);
+      setIsError(false);
+
+    // Reset the input fields by triggering the change handler with empty values
+    handleOnCheckoutFormChange('email', '');
+    handleOnCheckoutFormChange('name', '');
+      
+    } catch (error) {
+      // If there's an error, display the error message
+      setMessage('An error occurred during checkout.');
+      setIsError(true);
+    }
   };
 
-  // Render the component
   return (
-    // Conditionally add the 'open' class based on the isOpen prop
     <div className={`checkout-form ${isOpen ? 'open' : ''}`}>
-      {/* Define the form */}
-      <form onSubmit={handleSubmit}>
-        {/* Input field for email */}
+      <form onSubmit={handleSubmit}> 
+      <label htmlFor="name">Name:</label>
         <input
-          className="checkout-form-input" // Apply CSS class for styling
-          type="email" // Specify the type of input
-          name="email" // Name property used to identify the input
-          placeholder="student@codepath.org" // Placeholder text
-          value={checkoutForm.email} // Controlled component value
-          onChange={handleInputChange} // Handle changes to this input
+        id="name"
+        className="checkout-form-input"
+        type="text"
+        name="name"
+        placeholder="Student Name"
+        value={checkoutForm.name}
+        onChange={handleInputChange}
         />
-        {/* Input field for name */}
+
+        <label htmlFor="email">Email:</label>
         <input
-          className="checkout-form-input" // Apply CSS class for styling
-          type="text" // Specify the type of input
-          name="name" // Name property used to identify the input
-          placeholder="Student Name" // Placeholder text
-          value={checkoutForm.name} // Controlled component value
-          onChange={handleInputChange} // Handle changes to this input
+        id="email"
+        className="checkout-form-input"
+        type="email"
+        name="email"
+        placeholder="student@codepath.org"
+        value={checkoutForm.email}
+        onChange={handleInputChange}
         />
-        {/* Submit button */}
+
         <button className="checkout-button" type="submit">
           Checkout
         </button>
       </form>
+      {/* Display success or error message */}
+      {message && (
+        <div className={isError ? 'error' : 'success'}>
+          {message.split('\n').map((line, index) => <div key={index}>{line}</div>)}
+        </div>
+      )}
     </div>
   );
 };
 
-// Export the CheckoutForm component for use in other parts of the application
 export default CheckoutForm;
+
 
 
