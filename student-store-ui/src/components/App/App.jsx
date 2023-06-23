@@ -5,9 +5,10 @@ import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import Home from '../Home/Home';
 import ProductDetail from '../ProductDetail/ProductDetail';
-import NotFound from '../NotFound/NotFound';
 import About from '../About/About';
 import Contact from '../Contact/Contact';
+import NotFound from '../NotFound/NotFound';
+
 
 const App = () => {
   // Define state variables
@@ -40,6 +41,8 @@ const App = () => {
 
     fetchProducts();
   }, []);
+
+  
   
 
   // Handler function to add an item to the shopping cart
@@ -53,7 +56,7 @@ const App = () => {
       }
 
       const updatedCart = [...prevCart];
-      updatedCart[existingItemIndex].quantity += 1;
+      updatedCart[existingItemIndex].quantity += .5;
 
       return updatedCart;
     });
@@ -62,24 +65,35 @@ const App = () => {
   // Handler function to remove an item from the shopping cart
   const handleRemoveItemFromCart = (productId) => {
     setShoppingCart((prevCart) => {
+
+      // finds the index of the item in cart that matches prrovided productId
       const existingItemIndex = prevCart.findIndex((item) => item.itemId === productId);
 
-      if (existingItemIndex === -1) return prevCart; // Item not found in cart
+      if (existingItemIndex === -1) return prevCart; // Item not found in cart; nothing to remove so returns current state
 
+
+      // creating new array, a copy of current cart to avoid modifying the state
       const updatedCart = [...prevCart];
+
+      //gets the actual item from the cart using the index found earlier
       const existingItem = updatedCart[existingItemIndex];
 
-      // If the quantity is more than 1, decrement it. Otherwise, remove the item from the cart.
+      // If the quantity is more than 1(or just exists), decrement it. Otherwise, remove the item from the cart.
       if (existingItem.quantity > 1) {
-        existingItem.quantity -= 1;
+        existingItem.quantity -= .5;
       } else {
+
+        //splice removes last item from the cart
         updatedCart.splice(existingItemIndex, 1);
       }
 
+
+      // new state of the shopping cart after items have been removed or decreased
       return updatedCart;
     });
   };
 
+  // the spread syntax ...prevForm is used to take all existing entries from prevForm and then update the property with the key name to have the new value
   const handleOnCheckoutFormChange = (name, value) => {
     setCheckoutForm((prevForm) => ({ ...prevForm, [name]: value }))
   }
@@ -108,12 +122,6 @@ const App = () => {
   receiptMessage += `Before taxes, the subtotal was $${subtotal.toFixed(2)}\n`;
   receiptMessage += `After taxes and fees were applied, the total comes out to $${total.toFixed(2)}`;
 
-
-    // //reset the form after submission
-    // setCheckoutForm({
-    //   email: '',
-    //   name: '',
-    // })
 
     //empty the shopping cart after successful checkout
     setShoppingCart([])
@@ -159,6 +167,7 @@ const App = () => {
 
 
     </Router>
+
   );
 };
 

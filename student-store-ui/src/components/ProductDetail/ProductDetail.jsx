@@ -35,8 +35,8 @@ const ProductDetail = ({ handleAddItemToCart }) => {
   }
 
 
-  if (error || !product) {
-    return <NotFound/>;
+  if (error || (!product)) {
+    return <NotFound />;
   }
 
 
