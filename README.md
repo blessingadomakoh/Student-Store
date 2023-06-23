@@ -58,7 +58,7 @@ Check out our [deployed Student Store](https://codepath-student-store-demo.surge
 
 ### Stretch Features
 
-- [x] Create an endpoint for fetching all orders in the database and an endpoint for serving an individual order based on its ID.
+- [ ] Create an endpoint for fetching all orders in the database and an endpoint for serving an individual order based on its ID.
 - [ ] Build a page in the UI that displays the list of all past orders. The user should be able to click on any individual order to take them to a more detailed page of the transaction.
 - [ ] Allow users to use an input to filter orders by the email of the person who placed the order.
 - [x] Instead of "Success!" as stated in the instructions when a user checks out their order, I display the order information similar to the example deployed message with the name and email of user
