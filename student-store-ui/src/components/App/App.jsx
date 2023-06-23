@@ -9,6 +9,9 @@ import About from '../About/About';
 import Contact from '../Contact/Contact';
 import NotFound from '../NotFound/NotFound';
 
+//responsible for rendering the shopping cart with the list of items, their quantities, 
+//prices, and the calculated subtotal, tax, and total
+
 
 const App = () => {
   // Define state variables
@@ -25,12 +28,12 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://codepath-store-api.herokuapp.com/store');
+        const response = await axios.get('http://localhost:3001');
         console.log('Data fetched from API:', response.data);
 
         // Check if the response data contains a 'products' key that is an array before setting it to state
-        if (response.data && Array.isArray(response.data.products)) {
-          setProducts(response.data.products);
+        if (response.data && Array.isArray(response.data)) {
+          setProducts(response.data);
         } else {
           console.log('Error: Expected an object containing a products array but got:', response.data);
         }
@@ -56,7 +59,7 @@ const App = () => {
       }
 
       const updatedCart = [...prevCart];
-      updatedCart[existingItemIndex].quantity += .5;
+      updatedCart[existingItemIndex].quantity += .5; // using .5 because it keeps incrementing by 2 when I use 1
 
       return updatedCart;
     });
@@ -104,7 +107,7 @@ const App = () => {
 
     
   // Generate receipt message
-  let receiptMessage = 'Receipt\nShowing receipt for ' + checkoutForm.name + ' available at ' + checkoutForm.email + '":\n\n';
+  let receiptMessage = 'Receipt\nShowing receipt for ' + checkoutForm.name + ' available at ' + checkoutForm.email + ':\n\n';
 
   let subtotal = 0;
   for (const item of shoppingCart) {

@@ -2,17 +2,11 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const db = require('./data/db.json')
+const productsRoutes = require('./routes/productsRoutes')
 
-let productData = [...db.products]
-console.log(productData)
+
 app.use(cors())
 
-app.get('/store', (req, res) => {
-    res.status(200)
-    res.send(productData)
-})
-
-app.get('/store/:')
+app.use('/', productsRoutes)
 
 module.exports = app
