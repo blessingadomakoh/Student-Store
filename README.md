@@ -36,6 +36,20 @@ Check out our [deployed Student Store](https://codepath-student-store-demo.surge
 
 ### Core Features
 
+// website walthrough
+<a href="https://www.loom.com/share/5818bddf1d6a4dcfaa9614b3e79d6e5a">
+    <p>Library | Loom - 23 June 2023 - Watch Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/5818bddf1d6a4dcfaa9614b3e79d6e5a-with-play.gif">
+  </a>
+
+
+// insomnia displaying use of creating an endpoint for fetching all orders in the database and 
+// an endpoint for serving an individual order based on its ID
+<a href="https://www.loom.com/share/52bb6b42d34f496b906bef40c27c0e03">
+    <p>Library | Loom - 23 June 2023 - Watch Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/52bb6b42d34f496b906bef40c27c0e03-with-play.gif">
+  </a>
+
 - [x] User can click to expand the shopping cart in the left navigation.
 - [x] Users can click the '+' button on a product cart to increment that product in the shopping cart.
 - [x] Users can click the '-' button on a product cart to decrement that product in the shopping cart. If the count is zero, the product should be removed from the cart.
